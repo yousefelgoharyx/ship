@@ -6,10 +6,10 @@ import useFont from "./src/hooks/useFont";
 const Stack = createStackNavigator();
 
 function StyledText({children, weight, style}) {
-  let fontWeight = 'Cairo_400Regular';
-  if (weight === 700 || weight === 'bold') fontWeight = 'Cairo_700Bold'
+  let fontFamily = 'Cairo_400Regular';
+  if (weight === 700 || weight === 'bold') fontFamily = 'Cairo_700Bold'
   return (
-    <Text style={{...style, fontWeight}}>{children}</Text>
+    <Text style={{...style, fontFamily}}>{children}</Text>
   )
 }
 
