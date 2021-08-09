@@ -13,7 +13,7 @@ function StyledText({children, weight, style}) {
   )
 }
 
-function Home() {
+function Home({navigation}) {
   return (
     <View style={styles.container}>
       <StyledText>اهلا صفحة 1</StyledText>
@@ -22,7 +22,7 @@ function Home() {
   );
 }
 
-function Home2() {
+function Home2({navigation}) {
   return (
     <View style={styles.container}>
       <StyledText>اهلا صفحة 1</StyledText>
