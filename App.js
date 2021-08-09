@@ -34,10 +34,10 @@ export default function App() {
   useFont();
   return (
     <NavigationContainer>
-      <Stack>
+      <Stack.Navigator>
         <Stack.Screen component={Home} name="home" />
         <Stack.Screen component={Home2} name="home2" />
-      </Stack>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
