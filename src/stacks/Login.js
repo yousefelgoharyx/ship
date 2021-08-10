@@ -16,9 +16,9 @@ const Login = () => {
         </StyledText>
       </View>
       <View style={styles.form}>
-        <Input placeholder="البريد الالكتروني" />
+        <Input placeholder="البريد الالكتروني" autoCapitalize="none" />
         <Spacer />
-        <Input placeholder="كلمة السر" />
+        <Input placeholder="كلمة السر" autoCapitalize="none" />
         <Spacer />
         <Button>دخول</Button>
       </View>
