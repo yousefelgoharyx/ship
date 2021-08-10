@@ -4,13 +4,18 @@ import StyledText from "./StyledText";
 import { LinearGradient } from "expo-linear-gradient";
 const Button = ({ children }) => {
   return (
-      <TouchableOpacity activeOpacity={0.7}>
-          <LinearGradient style={styles.button} colors={["#ff3333", "#b763f2"]} start={[1, 1]} end={[0.1,0.1]}>
+    <TouchableOpacity activeOpacity={0.7}>
+      <LinearGradient
+        style={styles.button}
+        colors={["#ff3333", "#b763f2"]}
+        start={[1, 1]}
+        end={[0.1, 0.1]}
+      >
         <StyledText style={styles.buttonText} weight="bold">
           {children}
         </StyledText>
-    </LinearGradient>
-      </TouchableOpacity>
+      </LinearGradient>
+    </TouchableOpacity>
   );
 };
 
