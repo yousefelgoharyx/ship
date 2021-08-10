@@ -1,10 +1,18 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import { View, StyleSheet, StatusBar } from "react-native";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Spacer from "../components/Spacer";
 import StyledText from "../components/StyledText";
-const Login = () => {
+const Login = ({ navigation }) => {
+  // useEffect(() => {
+  //   StatusBar.setBackgroundColor("#ffffff");
+  //   StatusBar.setBarStyle("dark-content")
+  //   return () => {
+  //     StatusBar.setBackgroundColor("#ff3333");
+  //     StatusBar.setBarStyle("light-content")
+  //   };
+  // }, []);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -20,7 +28,7 @@ const Login = () => {
         <Spacer />
         <Input placeholder="كلمة السر" autoCapitalize="none" />
         <Spacer />
-        <Button>دخول</Button>
+        <Button onPress={() => navigation.navigate("Home")}>دخول</Button>
       </View>
     </View>
   );

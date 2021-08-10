@@ -3,7 +3,13 @@ import { View } from "react-native";
 
 const Spacer = ({ space }) => {
   return (
-    <View style={{ height: space || 16, backgroundColor: "transparent" }}></View>
+    <View
+      style={{
+        height: space || 16,
+        width: space || 16,
+        backgroundColor: "transparent",
+      }}
+    ></View>
   );
 };
 
