@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     height: 56,
     fontFamily: "Cairo",
     flexGrow: 1,
+    textAlign: 'right'
   },
 });
 

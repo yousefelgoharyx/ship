@@ -13,12 +13,12 @@ export default function App() {
   if (!isLoaded) return <AppLoading />;
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor="#ff3333" barStyle="light-content" />
+      <StatusBar backgroundColor="#2B1253" barStyle="light-content" />
 
-        <Stack.Navigator screenOptions={{ headerMode: "none" }}>
-          <Stack.Screen component={Login} name="Login" />
-          <Stack.Screen component={Main} name="Main" />
-        </Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerMode: "none" }}>
+        <Stack.Screen component={Login} name="Login" />
+        <Stack.Screen component={Main} name="Main" />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

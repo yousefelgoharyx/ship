@@ -7,7 +7,7 @@ const Card = () => {
   return (
     <View style={styles.container}>
       <View style={styles.info}>
-        <StyledText>يوسف مجدي</StyledText>
+        <StyledText style={styles.infoName} weight="bold">يوسف مجدي</StyledText>
         <Spacer space={4} />
         <View style={styles.infoPortion}>
           <StyledText style={styles.infoText}>الاسكندرية</StyledText>
@@ -49,13 +49,16 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     justifyContent: "flex-end",
   },
+  infoName: {
+    textAlign: 'right',
+  },
   infoText: {
     color: "#999",
     marginRight: 8,
     textAlign: 'right'
   },
   more: {
-      marginRight: 16,
+      marginRight: 32,
       alignSelf: 'flex-start',
       width: 32,
       height: 32,

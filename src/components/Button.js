@@ -7,7 +7,7 @@ const Button = ({ children, ...rest }) => {
     <TouchableOpacity activeOpacity={0.7} {...rest}>
       <LinearGradient
         style={styles.button}
-        colors={["#ff3333", "#b763f2"]}
+        colors={["#2B1253", "#2B1253"]}
         start={[1, 1]}
         end={[0.1, 0.1]}
       >

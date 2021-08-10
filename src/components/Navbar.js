@@ -15,12 +15,11 @@ const Navbar = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        <TouchableOpacity activeOpacity={0.7} onPress={props.onOpenDrawer}>
-          <MaterialIcons name="menu" color="#fff" size={24} />
-        </TouchableOpacity>
         <View style={styles.current}>
-          <StyledText style={styles.currentPage}>جميع الطلبات</StyledText>
-          <MaterialIcons name="local-shipping" color="#fff" size={24} />
+          <StyledText style={styles.currentPage}>{props.title}</StyledText>
+          <TouchableOpacity activeOpacity={0.7} onPress={props.onOpenDrawer}>
+            <MaterialIcons name="menu" color="#fff" size={24} />
+          </TouchableOpacity>
         </View>
       </View>
       {props.onSearch && (
@@ -61,12 +60,12 @@ const Navbar = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#ff3333",
+    backgroundColor: "#2B1253",
   },
   wrapper: {
     alignItems: "center",
     justifyContent: "space-between",
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     paddingHorizontal: 16,
     paddingVertical: 16,
   },
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
     flexDirection: "row-reverse",
   },
   option: {
-    backgroundColor: "#333",
+    backgroundColor: "#E97427",
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 32,

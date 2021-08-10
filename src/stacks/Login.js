@@ -9,7 +9,7 @@ const Login = ({ navigation }) => {
   //   StatusBar.setBackgroundColor("#ffffff");
   //   StatusBar.setBarStyle("dark-content")
   //   return () => {
-  //     StatusBar.setBackgroundColor("#ff3333");
+  //     StatusBar.setBackgroundColor("#E97427");
   //     StatusBar.setBarStyle("light-content")
   //   };
   // }, []);
