@@ -15,7 +15,7 @@ const Navbar = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        <TouchableOpacity activeOpacity={0.7}>
+        <TouchableOpacity activeOpacity={0.7} onPress={props.onOpenDrawer}>
           <MaterialIcons name="menu" color="#fff" size={24} />
         </TouchableOpacity>
         <View style={styles.current}>

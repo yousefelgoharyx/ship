@@ -28,7 +28,7 @@ const Login = ({ navigation }) => {
         <Spacer />
         <Input placeholder="كلمة السر" autoCapitalize="none" />
         <Spacer />
-        <Button onPress={() => navigation.navigate("Home")}>دخول</Button>
+        <Button onPress={() => navigation.navigate("Main")}>دخول</Button>
       </View>
     </View>
   );

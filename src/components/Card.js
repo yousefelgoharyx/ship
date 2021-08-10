@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   infoText: {
     color: "#999",
     marginRight: 8,
+    textAlign: 'right'
   },
   more: {
       marginRight: 16,
