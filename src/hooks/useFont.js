@@ -1,15 +1,15 @@
-import React from 'react'
-import AppLoading from 'expo-app-loading'
-import { useFonts, Cairo_400Regular, Cairo_700Bold } from '@expo-google-fonts/cairo';
+import {
+  useFonts,
+  Cairo_400Regular,
+  Cairo_700Bold,
+} from "@expo-google-fonts/cairo";
 
 const useFont = () => {
-    let [fontsLoaded] = useFonts({
-        Cairo_400Regular,
-        Cairo_700Bold
-      });
-    
-      if (!fontsLoaded) {
-        return <AppLoading />;
-      }
-    }
-export default useFont
+  let [fontsLoaded] = useFonts({
+    'Cairo': Cairo_400Regular,
+    'Cairo-Bold': Cairo_700Bold,
+  });
+
+  return fontsLoaded
+};
+export default useFont;
