@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import StyledText from "./StyledText";
 import { MaterialIcons } from "@expo/vector-icons";
 import Spacer from "./Spacer";
+import BottomModal from "./BottomModal";
+import BottomModalItem from "./BottomModalItem";
+
+
 const Card = () => {
+  const [modal, setmodal] = useState(false);
   return (
     <View style={styles.container}>
+      <BottomModal visible={modal} onRequestClose={() => setmodal(false)}>
+        <View style={{ backgroundColor: "#fff" }}>
+          <BottomModalItem>تفاصيل الشحنة</BottomModalItem>
+          <BottomModalItem>تحديث الشحنة</BottomModalItem>
+        
+        </View>
+      </BottomModal>
+
       <View style={styles.info}>
-        <StyledText style={styles.infoName} weight="bold">يوسف مجدي</StyledText>
+        <StyledText style={styles.infoName} weight="bold">
+          يوسف مجدي
+        </StyledText>
         <Spacer space={4} />
         <View style={styles.infoPortion}>
           <StyledText style={styles.infoText}>الاسكندرية</StyledText>
-          <MaterialIcons name="place" color="#999" style={{top: 6}} />
+          <MaterialIcons name="place" color="#999" style={{ top: 6 }} />
         </View>
         <Spacer space={4} />
 
@@ -19,11 +34,11 @@ const Card = () => {
           <StyledText style={styles.infoText}>
             نادي الصيد محرم بيك شارع الاخلاص عمارة ابو رضا الدور الاول
           </StyledText>
-          <MaterialIcons name="place" color="#999" style={{top: 6}} />
+          <MaterialIcons name="place" color="#999" style={{ top: 6 }} />
         </View>
       </View>
 
-      <TouchableOpacity style={styles.more}>
+      <TouchableOpacity style={styles.more} onPress={() => setmodal(true)}>
         <MaterialIcons name="more-horiz" size={24} />
       </TouchableOpacity>
     </View>
@@ -50,20 +65,20 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   infoName: {
-    textAlign: 'right',
+    textAlign: "right",
   },
   infoText: {
     color: "#999",
     marginRight: 8,
-    textAlign: 'right'
+    textAlign: "right",
   },
   more: {
-      marginRight: 32,
-      alignSelf: 'flex-start',
-      width: 32,
-      height: 32,
-      alignItems: 'center',
-      justifyContent: 'center'
-  }
+    marginRight: 32,
+    alignSelf: "flex-start",
+    width: 32,
+    height: 32,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 export default Card;

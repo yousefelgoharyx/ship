@@ -16,6 +16,9 @@ import Deliver from "../screens/Deliver";
 import Wallet from "../screens/Wallet";
 import Returns from "../screens/Returns";
 import Notis from "../screens/Notis";
+import Settings from "../screens/Settings";
+import Ticket from "../screens/Ticket";
+
 const Drawer = createDrawerNavigator();
 
 const links = [
@@ -59,11 +62,13 @@ const links = [
     route: "Settings",
     icon: "settings",
     name: "اعدادات",
+    component: Settings
   },
   {
     route: "Ticket",
     icon: "confirmation-number",
     name: "تذكرة دعم",
+    component: Ticket
   },
   {
     route: "Logout",
