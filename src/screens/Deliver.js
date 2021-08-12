@@ -1,111 +1,96 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Navbar from "../components/Navbar";
 import Spacer from "../components/Spacer";
 import StyledText from "../components/StyledText";
 import * as ImagePicker from "expo-image-picker";
+import { Page, PageWrapper } from "../components/Page";
+
+const CameraButton = (props) => (
+  <TouchableOpacity onPress={props.onPress}>
+    <View style={styles.cameraButton}>
+      <StyledText>التقاط صورة</StyledText>
+    </View>
+  </TouchableOpacity>
+);
+
+const cameraSettings = {
+  mediaTypes: ImagePicker.MediaTypeOptions.All,
+  allowsEditing: true,
+  aspect: [1, 1],
+  quality: 1,
+};
 
 const Deliver = ({ navigation }) => {
   const [barcode, setBarcode] = useState(null);
   const [id, setId] = useState(null);
-
   useEffect(() => {
-    (async () => {
-      if (Platform.OS !== "web") {
-        const { status } =
-          await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== "granted") {
-          alert("Sorry, we need camera roll permissions to make this work!");
-        }
+    async function req() {
+      let status;
+      let canAskAgain;
+      while (status !== "granted" && canAskAgain) {
+        const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        status = result.status;
+        canAskAgain = result.canAskAgain;
       }
-    })();
+    }
+    req();
   }, []);
   const takeBarcode = async () => {
-    let result = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.cancelled) {
-      setBarcode(result.uri);
+    const s = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (s.granted) {
+      let result = await ImagePicker.launchCameraAsync(cameraSettings);
+      if (!result.cancelled) setBarcode(result.uri);
+    } else {
+      alert("Allow the application to access the media");
     }
   };
 
   const takeId = async () => {
-    let result = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.cancelled) {
-      setId(result.uri);
+    const s = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (s.granted) {
+      let result = await ImagePicker.launchCameraAsync(cameraSettings);
+      if (!result.cancelled) setId(result.uri);
+    } else {
+      alert("Allow the application to access the media");
     }
   };
+
+  let barcodeImage = null;
+  let idImage = null;
+  if (barcode)
+    barcodeImage = (
+      <Image source={{ uri: barcode }} style={styles.cameraImage} />
+    );
+  if (id) idImage = <Image source={{ uri: id }} style={styles.cameraImage} />;
   return (
-    <View style={styles.container}>
+    <Page>
       <Navbar onOpenDrawer={() => navigation.openDrawer()} title="تسليم شحنة" />
 
-      <ScrollView contentContainerStyle={styles.formWrapper}>
+      <PageWrapper>
         <Input placeholder="رقم الشحنة" />
         <Spacer />
-
-        {barcode && (
-          <Image
-            source={{ uri: barcode }}
-            style={{ width: "100%", height: 250, borderRadius: 16 }}
-          />
-        )}
+        {barcodeImage}
         <Spacer />
         <StyledText weight="bold">صورة الباركود</StyledText>
+        <CameraButton onPress={takeBarcode} />
         <Spacer space={8} />
-        <TouchableOpacity onPress={takeBarcode}>
-          <View style={styles.cameraButton}>
-            <StyledText>التقاط صورة</StyledText>
-          </View>
-        </TouchableOpacity>
         <Spacer />
-        {id && (
-          <Image
-            source={{ uri: id }}
-            style={{ width: "100%", height: 250, borderRadius: 16 }}
-          />
-        )}
+        {idImage}
         <Spacer />
         <StyledText weight="bold">صورة بطاقة المستلم</StyledText>
         <Spacer space={8} />
-        <TouchableOpacity onPress={takeId}>
-          <View style={styles.cameraButton}>
-            <StyledText>التقاط صورة</StyledText>
-          </View>
-        </TouchableOpacity>
+        <CameraButton onPress={takeId} />
         <Spacer />
         <Button>تأكيد</Button>
-      </ScrollView>
-    </View>
+      </PageWrapper>
+    </Page>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#f5f5f5",
-    flex: 1,
-    direction: "rtl",
-  },
-  formWrapper: {
-    padding: 16,
-  },
   cameraButton: {
     textAlign: "center",
     backgroundColor: "#ddd",
@@ -113,6 +98,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 56,
     borderRadius: 56 / 8,
+  },
+  cameraImage: {
+    width: "100%",
+    height: 250,
+    borderRadius: 16,
   },
 });
 

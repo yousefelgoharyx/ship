@@ -1,41 +1,39 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import Navbar from "../components/Navbar";
 import StyledText from "../components/StyledText";
 import Spacer from "../components/Spacer";
+import { Page, PageWrapper } from "../components/Page";
 
+const Noti = (props) => {
+  return (
+    <View style={styles.noti}>
+      <View style={{ flexDirection: "row-reverse", alignItems: "center" }}>
+        <MaterialIcons name="notifications" color="#000" size={24} />
+        <Spacer space={4} />
+        <StyledText style={styles.head} weight="bold">
+          {props.head}
+        </StyledText>
+      </View>
+      <Spacer space={4} />
+      <StyledText style={styles.subhead}>{props.content}</StyledText>
+    </View>
+  );
+};
 const Notis = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <Page>
       <Navbar onOpenDrawer={() => navigation.openDrawer()} title="الاشعارات" />
-      <ScrollView contentContainerStyle={styles.wrapper}>
-        <View style={styles.noti}>
-          <View style={{ flexDirection: "row-reverse", alignItems: "center" }}>
-            <MaterialIcons name="notifications" color="#000" size={24} />
-            <Spacer space={4} />
-            <StyledText style={styles.head} weight="bold">
-              ادارة الشركة
-            </StyledText>
-          </View>
-          <Spacer space={4} />
-          <StyledText style={styles.subhead}>
-            كسم اللي يشغلك بفلوس والله
-          </StyledText>
-        </View>
-      </ScrollView>
-    </View>
+      <PageWrapper>
+        <Noti head="ادارة الشركة" content="كسم اللي يشغلك بفلوس والله" />
+      </PageWrapper>
+    </Page>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#f5f5f5",
-    flex: 1,
-  },
-  wrapper: {
-    padding: 16,
-  },
+  
   noti: {
     backgroundColor: "#fff",
     padding: 16,
@@ -45,9 +43,11 @@ const styles = StyleSheet.create({
   },
   head: {
     fontSize: 16,
+    textAlign: 'right'
   },
   subhead: {
     fontSize: 14,
+    textAlign: 'right'
   },
 });
 

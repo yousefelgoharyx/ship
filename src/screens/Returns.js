@@ -1,38 +1,30 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { StyleSheet } from "react-native";
 import Navbar from "../components/Navbar";
 import Spacer from "../components/Spacer";
 import StyledText from "../components/StyledText";
 import Card from "../components/Card";
-
+import { Page, PageWrapper } from "../components/Page";
 const Returns = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <Page>
       <Navbar
         onOpenDrawer={() => navigation.openDrawer()}
         onSearch={(t) => t}
         title="محفظتي"
       />
-      <ScrollView contentContainerStyle={styles.wrapper}>
+      <PageWrapper>
         <StyledText style={styles.latestHead} weight="bold">
           اخر الطلبات
         </StyledText>
         <Spacer />
         <Card />
-      </ScrollView>
-    </View>
+      </PageWrapper>
+    </Page>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#f5f5f5",
-    flex: 1,
-    direction: "rtl",
-  },
-  wrapper: {
-    padding: 16,
-  },
   latestHead: {
     fontSize: 18,
   },

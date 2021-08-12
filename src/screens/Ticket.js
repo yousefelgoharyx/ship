@@ -1,32 +1,32 @@
 import React from "react";
-import { View, StyleSheet, ScrollView, TextInput } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 import Navbar from "../components/Navbar";
 import Input from "../components/Input";
 import Spacer from "../components/Spacer";
 import Button from "../components/Button";
-
+import { Page, PageWrapper } from "../components/Page";
 const Ticket = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <Page>
       <Navbar
         onOpenDrawer={() => navigation.openDrawer()}
         title="تذاكر الدعم"
       />
-      <ScrollView contentContainerStyle={styles.wrapper}>
+      <PageWrapper>
         <Input placeholder="عنوان التذكرة" />
         <Spacer />
-          <TextInput
-            style={styles.textArea}
-            underlineColorAndroid="transparent"
-            placeholder="اكتب شيئا"
-            placeholderTextColor="grey"
-            multiline={true}
-            numberOfLines={20}
-          />
+        <TextInput
+          style={styles.textArea}
+          underlineColorAndroid="transparent"
+          placeholder="اكتب شيئا"
+          placeholderTextColor="grey"
+          multiline={true}
+          numberOfLines={20}
+        />
         <Spacer />
         <Button>ارسال</Button>
-      </ScrollView>
-    </View>
+      </PageWrapper>
+    </Page>
   );
 };
 
@@ -40,16 +40,16 @@ const styles = StyleSheet.create({
   },
 
   textArea: {
-    fontFamily: 'Cairo',
-    textAlign: 'right',
+    fontFamily: "Cairo",
+    textAlign: "right",
     backgroundColor: "#fff",
-    textAlignVertical: 'top',
+    textAlignVertical: "top",
     padding: 16,
     borderRadius: 8,
     borderColor: "#ddd",
     borderWidth: 1,
     lineHeight: 1.2,
-    height: 300
+    height: 300,
   },
 });
 

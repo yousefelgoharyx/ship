@@ -18,6 +18,7 @@ import Returns from "../screens/Returns";
 import Notis from "../screens/Notis";
 import Settings from "../screens/Settings";
 import Ticket from "../screens/Ticket";
+import Order from "../screens/Order";
 
 const Drawer = createDrawerNavigator();
 
@@ -38,42 +39,37 @@ const links = [
     route: "Deliver",
     icon: "send",
     name: "تسليم شحنة",
-    component: Deliver
+    component: Deliver,
   },
   {
     route: "Wallet",
     icon: "credit-card",
     name: "محفظتي",
-    component: Wallet
+    component: Wallet,
   },
   {
     route: "Returns",
     icon: "swap-horiz",
     name: "مرتجعة",
-    component: Returns
+    component: Returns,
   },
   {
     route: "Notis",
     icon: "notifications",
     name: "اشعارات",
-    component: Notis
+    component: Notis,
   },
   {
     route: "Settings",
     icon: "settings",
     name: "اعدادات",
-    component: Settings
+    component: Settings,
   },
   {
     route: "Ticket",
     icon: "confirmation-number",
     name: "تذكرة دعم",
-    component: Ticket
-  },
-  {
-    route: "Logout",
-    icon: "logout",
-    name: "خروج",
+    component: Ticket,
   },
 ];
 const Main = () => {
@@ -85,11 +81,10 @@ const Main = () => {
         headerShown: false,
       }}
     >
-      {links.map((link) =>
-        link.component ? (
-          <Drawer.Screen name={link.route} component={link.component} />
-        ) : null
-      )}
+      {links.map((link) => (
+        <Drawer.Screen name={link.route} component={link.component} />
+      ))}
+      <Drawer.Screen name="Order" component={Order} />
     </Drawer.Navigator>
   );
 };
@@ -117,6 +112,14 @@ function DrawerSider({ state, navigation }) {
             </>
           );
         })}
+        <Spacer space={8} />
+        <Link
+          icon="logout"
+          onPress={() => console.log("logout")}
+          active={false}
+        >
+          خروج
+        </Link>
       </ScrollView>
     </View>
   );

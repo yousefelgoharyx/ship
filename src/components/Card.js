@@ -1,24 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import StyledText from "./StyledText";
 import { MaterialIcons } from "@expo/vector-icons";
 import Spacer from "./Spacer";
-import BottomModal from "./BottomModal";
-import BottomModalItem from "./BottomModalItem";
 
-
-const Card = () => {
-  const [modal, setmodal] = useState(false);
+const Card = ({...rest}) => {
   return (
-    <View style={styles.container}>
-      <BottomModal visible={modal} onRequestClose={() => setmodal(false)}>
-        <View style={{ backgroundColor: "#fff" }}>
-          <BottomModalItem>تفاصيل الشحنة</BottomModalItem>
-          <BottomModalItem>تحديث الشحنة</BottomModalItem>
-        
-        </View>
-      </BottomModal>
-
+    <TouchableOpacity activeOpacity={0.7} style={styles.container} {...rest}>
       <View style={styles.info}>
         <StyledText style={styles.infoName} weight="bold">
           يوسف مجدي
@@ -38,10 +26,7 @@ const Card = () => {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.more} onPress={() => setmodal(true)}>
-        <MaterialIcons name="more-horiz" size={24} />
-      </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 

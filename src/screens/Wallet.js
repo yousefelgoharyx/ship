@@ -1,16 +1,16 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Button from "../components/Button";
 import Navbar from "../components/Navbar";
 import Spacer from "../components/Spacer";
 import StyledText from "../components/StyledText";
 import Card from "../components/Card";
-
+import { Page, PageWrapper } from "../components/Page";
 const Deliver = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <Page>
       <Navbar onOpenDrawer={() => navigation.openDrawer()} title="محفظتي" />
-      <ScrollView contentContainerStyle={styles.walletWrapper}>
+      <PageWrapper>
         <View style={styles.wallet}>
           <View>
             <StyledText style={styles.head} weight="bold">
@@ -27,20 +27,12 @@ const Deliver = ({ navigation }) => {
         </StyledText>
         <Spacer />
         <Card />
-      </ScrollView>
-    </View>
+      </PageWrapper>
+    </Page>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#f5f5f5",
-    flex: 1,
-    direction: "rtl",
-  },
-  walletWrapper: {
-    padding: 16,
-  },
   wallet: {
     flexDirection: "row-reverse",
     justifyContent: "space-between",
@@ -49,7 +41,6 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
     backgroundColor: "#fff",
     borderRadius: 8,
-
     elevation: 1,
   },
   walletButton: {

@@ -1,38 +1,29 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
 import Card from "../components/Card";
 import Navbar from "../components/Navbar";
+import { Page, PageWrapper } from "../components/Page";
 import Spacer from "../components/Spacer";
-
-const MyOrders = ({navigation}) => {
+const MyOrders = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <Page>
       <Navbar
         onSearch={(text) => console.log(text)}
         onOpenDrawer={() => navigation.openDrawer()}
         title="طلباتي"
       />
-      <ScrollView contentContainerStyle={{padding: 16}}>
-          <Card />
-          <Spacer />
-          <Card />
-          <Spacer />
-          <Card />
-          <Spacer />
-          <Card />
-          <Spacer />
-          <Card />
-      </ScrollView>
-    </View>
+      <PageWrapper>
+        <Card />
+        <Spacer />
+        <Card />
+        <Spacer />
+        <Card />
+        <Spacer />
+        <Card />
+        <Spacer />
+        <Card />
+      </PageWrapper>
+    </Page>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#f5f5f5",
-    flex: 1,
-    direction: 'rtl'
-  },
-});
 
 export default MyOrders;
