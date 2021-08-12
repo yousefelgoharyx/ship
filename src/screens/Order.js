@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Button from "../components/Button";
 import Detail from "../components/Detail";
+import Details from "../components/Details";
 import Navbar from "../components/Navbar";
 import { Page, PageWrapper } from "../components/Page";
 import Spacer from "../components/Spacer";
@@ -14,7 +15,7 @@ const Order = ({ navigation }) => {
         onOpenDrawer={() => navigation.openDrawer()}
       />
       <PageWrapper>
-        <View style={styles.details}>
+        <Details>
           <Detail head="اسم المستلم:" subhead="يوسف مجدي" />
           <Detail head="رقم هاتف المستلم" subhead="01225371649" />
           <Detail
@@ -26,7 +27,7 @@ const Order = ({ navigation }) => {
           <Detail head="عنوان المرسل:" subhead="الحضرة الجديدة شارع الازالة" />
           <Detail head="رقم هاتف المرسل:" subhead="0125367184" />
           <Detail head="المبلغ" subhead="560 جنيه" />
-        </View>
+        </Details>
         <Spacer />
         <Button>تحصيل الشحنة</Button>
       </PageWrapper>
@@ -34,14 +35,5 @@ const Order = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  details: {
-    backgroundColor: "#fff",
-    padding: 8,
-    borderRadius: 8,
-    borderColor: "#ddd",
-    borderWidth: 1,
-  },
-});
 
 export default Order;

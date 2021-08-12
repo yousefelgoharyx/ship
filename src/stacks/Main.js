@@ -19,6 +19,7 @@ import Notis from "../screens/Notis";
 import Settings from "../screens/Settings";
 import Ticket from "../screens/Ticket";
 import Order from "../screens/Order";
+import MyOrder from "../screens/MyOrder";
 
 const Drawer = createDrawerNavigator();
 
@@ -85,6 +86,7 @@ const Main = () => {
         <Drawer.Screen name={link.route} component={link.component} />
       ))}
       <Drawer.Screen name="Order" component={Order} />
+      <Drawer.Screen name="MyOrder" component={MyOrder} />
     </Drawer.Navigator>
   );
 };

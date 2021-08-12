@@ -14,7 +14,7 @@ const Ticket = ({ navigation }) => {
       />
       <PageWrapper>
         <Input placeholder="عنوان التذكرة" />
-        <Spacer />
+        <Spacer space={8} />
         <TextInput
           style={styles.textArea}
           underlineColorAndroid="transparent"

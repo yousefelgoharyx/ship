@@ -12,7 +12,7 @@ const MyOrders = ({ navigation }) => {
         title="طلباتي"
       />
       <PageWrapper>
-        <Card />
+        <Card onPress={() => navigation.navigate("MyOrder")}/>
         <Spacer />
         <Card />
         <Spacer />

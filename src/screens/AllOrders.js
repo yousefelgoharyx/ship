@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import Navbar from "../components/Navbar";
 import Spacer from "../components/Spacer";
 import { Page, PageWrapper } from "../components/Page";
+import Spinner from "../components/Spinner";
 const AllOrders = ({ navigation }) => {
   return (
     <Page>

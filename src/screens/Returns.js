@@ -11,7 +11,7 @@ const Returns = ({ navigation }) => {
       <Navbar
         onOpenDrawer={() => navigation.openDrawer()}
         onSearch={(t) => t}
-        title="محفظتي"
+        title="مرتجعة"
       />
       <PageWrapper>
         <StyledText style={styles.latestHead} weight="bold">

@@ -19,7 +19,7 @@ const Deliver = ({ navigation }) => {
             <Spacer space={2} />
             <StyledText style={styles.subhead}>5000 جنيه</StyledText>
           </View>
-          <Button style={styles.walletButton}>سحب</Button>
+          <Button small style={styles.walletButton}>سحب</Button>
         </View>
         <Spacer />
         <StyledText style={styles.latestHead} weight="bold">
