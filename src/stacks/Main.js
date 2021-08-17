@@ -20,6 +20,7 @@ import Settings from "../screens/Settings";
 import Ticket from "../screens/Ticket";
 import Order from "../screens/Order";
 import MyOrder from "../screens/MyOrder";
+import Stores from "../screens/Stores";
 
 const Drawer = createDrawerNavigator();
 
@@ -34,6 +35,18 @@ const links = [
     route: "MyOrders",
     icon: "source",
     name: "طلباتي",
+    component: MyOrders,
+  },
+  {
+    route: "Stores",
+    icon: "store",
+    name: "متاجرنا",
+    component: Stores,
+  },
+  {
+    route: "Private",
+    icon: "policy",
+    name: "الطبات الخاصة",
     component: MyOrders,
   },
   {
@@ -93,13 +106,13 @@ const Main = () => {
 
 function DrawerSider({ state, navigation }) {
   return (
-    <View>
+    <ScrollView>
       <Profile
         image="http://thebodyisnotanapology.com/wp-content/uploads/2018/02/pexels-photo-459947.jpg"
         name="يوسف مجدي"
         email="yousefelgoharyx@gmail.com"
       />
-      <ScrollView>
+      <View style={{paddingBottom: 16}}>
         {links.map((link) => {
           return (
             <>
@@ -122,8 +135,8 @@ function DrawerSider({ state, navigation }) {
         >
           خروج
         </Link>
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
