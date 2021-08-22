@@ -17,9 +17,15 @@ const Navbar = (props) => {
       <View style={styles.wrapper}>
         <View style={styles.current}>
           <StyledText style={styles.currentPage}>{props.title}</StyledText>
-          <TouchableOpacity activeOpacity={0.7} onPress={props.onOpenDrawer}>
-            <MaterialIcons name="menu" color="#fff" size={24} />
-          </TouchableOpacity>
+          {props.onGoBack ? (
+            <TouchableOpacity activeOpacity={0.7} onPress={props.onGoBack}>
+              <MaterialIcons name="arrow-forward" color="#fff" size={24} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity activeOpacity={0.7} onPress={props.onOpenDrawer}>
+              <MaterialIcons name="menu" color="#fff" size={24} />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
       {props.onSearch && (
@@ -44,10 +50,10 @@ const Navbar = (props) => {
           >
             {props.options.map((option) => {
               return (
-                <>
+                <View key={option}>
                   <Option>{option}</Option>
                   <Spacer space={8} />
-                </>
+                </View>
               );
             })}
           </ScrollView>

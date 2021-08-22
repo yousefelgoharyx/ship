@@ -3,19 +3,17 @@ import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import useFont from "./src/hooks/useFont";
 import AppLoading from "expo-app-loading";
-import { AuthProvider } from "./src/context/auth";
-import AppInsider from "./AppInsider";
+import { CountProvider } from "./src/context/auth";
 
-export default function App() {
+export default function AppWrappper({ children }) {
   const isLoaded = useFont();
-
   if (!isLoaded) return <AppLoading />;
   return (
-    <AuthProvider>
+    <CountProvider>
       <NavigationContainer>
         <StatusBar backgroundColor="#2B1253" barStyle="light-content" />
-        <AppInsider />
+        {children}
       </NavigationContainer>
-    </AuthProvider>
+    </CountProvider>
   );
 }

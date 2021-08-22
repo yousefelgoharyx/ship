@@ -1,18 +1,18 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import Button from "../components/Button";
-import Detail from "../components/Detail";
-import Details from "../components/Details";
-import Navbar from "../components/Navbar";
-import { Page, PageWrapper } from "../components/Page";
-import Spacer from "../components/Spacer";
+import Button from "../../components/Button";
+import Detail from "../../components/Detail";
+import Details from "../../components/Details";
+import Navbar from "../../components/Navbar";
+import { Page, PageWrapper } from "../../components/Page";
+import Spacer from "../../components/Spacer";
 
 const Order = ({ navigation }) => {
   return (
     <Page>
       <Navbar
         title="تفاصيل الطلب"
-        onOpenDrawer={() => navigation.openDrawer()}
+        onGoBack={() => navigation.goBack()}
       />
       <PageWrapper>
         <Details>

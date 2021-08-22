@@ -10,29 +10,28 @@ import {
 import StyledText from "../components/StyledText";
 import Spacer from "../components/Spacer";
 import { MaterialIcons } from "@expo/vector-icons";
-import AllOrders from "../screens/AllOrders";
-import MyOrders from "../screens/MyOrders";
+import AllOrders from "../screens/AllOrders/AllOrders";
+import MyOrders from "../screens/MyOrders/MyOrders";
 import Deliver from "../screens/Deliver";
 import Wallet from "../screens/Wallet";
 import Returns from "../screens/Returns";
 import Notis from "../screens/Notis";
 import Settings from "../screens/Settings";
 import Ticket from "../screens/Ticket";
-import Order from "../screens/Order";
-import MyOrder from "../screens/MyOrder";
 import Stores from "../screens/Stores";
+import { useAuth } from "../context/auth";
 
 const Drawer = createDrawerNavigator();
 
 const links = [
   {
-    route: "AllOrders",
+    route: "AllOrdersStack",
     icon: "local-shipping",
     name: "جميع الطلبات",
     component: AllOrders,
   },
   {
-    route: "MyOrders",
+    route: "MyOrdersStack",
     icon: "source",
     name: "طلباتي",
     component: MyOrders,
@@ -89,33 +88,33 @@ const links = [
 const Main = () => {
   return (
     <Drawer.Navigator
-      drawerContent={DrawerSider}
+      drawerContent={(props) => <DrawerSider {...props} />}
       screenOptions={{
         drawerPosition: "right",
         headerShown: false,
       }}
+      backBehavior="history"
     >
       {links.map((link) => (
-        <Drawer.Screen name={link.route} component={link.component} />
+        <Drawer.Screen name={link.route} component={link.component} key={link.route} />
       ))}
-      <Drawer.Screen name="Order" component={Order} />
-      <Drawer.Screen name="MyOrder" component={MyOrder} />
     </Drawer.Navigator>
   );
 };
 
 function DrawerSider({ state, navigation }) {
+  const {user, logout} = useAuth()
   return (
     <ScrollView>
       <Profile
-        image="http://thebodyisnotanapology.com/wp-content/uploads/2018/02/pexels-photo-459947.jpg"
-        name="يوسف مجدي"
-        email="yousefelgoharyx@gmail.com"
+        image={"data:image/png;base64," + user.image}
+        name={user.username}
+        email={user.email}
       />
       <View style={{paddingBottom: 16}}>
         {links.map((link) => {
           return (
-            <>
+            <View key={link.route}>
               <Spacer space={8} />
               <Link
                 icon={link.icon}
@@ -124,13 +123,13 @@ function DrawerSider({ state, navigation }) {
               >
                 {link.name}
               </Link>
-            </>
+            </View>
           );
         })}
         <Spacer space={8} />
         <Link
           icon="logout"
-          onPress={() => console.log("logout")}
+          onPress={logout}
           active={false}
         >
           خروج
@@ -201,6 +200,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 150 / 2,
+    backgroundColor: "#ccc"
   },
   text: {
     color: "#fff",
