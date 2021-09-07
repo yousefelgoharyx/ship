@@ -96,22 +96,29 @@ const Main = () => {
       backBehavior="history"
     >
       {links.map((link) => (
-        <Drawer.Screen name={link.route} component={link.component} key={link.route} />
+        <Drawer.Screen
+          name={link.route}
+          component={link.component}
+          key={link.route}
+        />
       ))}
     </Drawer.Navigator>
   );
 };
 
 function DrawerSider({ state, navigation }) {
-  const {user, logout} = useAuth()
+  const { auth, logout } = useAuth();
   return (
     <ScrollView>
-      <Profile
-        image={"data:image/png;base64," + user.image}
-        name={user.username}
-        email={user.email}
-      />
-      <View style={{paddingBottom: 16}}>
+      {auth.token ? (
+        <Profile
+          image={"data:image/png;base64," + auth?.user?.pic}
+          name={auth?.user?.name}
+          email={auth?.user?.email }
+        />
+      ) : null}
+
+      <View style={{ paddingBottom: 16 }}>
         {links.map((link) => {
           return (
             <View key={link.route}>
@@ -127,11 +134,7 @@ function DrawerSider({ state, navigation }) {
           );
         })}
         <Spacer space={8} />
-        <Link
-          icon="logout"
-          onPress={logout}
-          active={false}
-        >
+        <Link icon="logout" onPress={logout} active={false}>
           خروج
         </Link>
       </View>
@@ -200,7 +203,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 150 / 2,
-    backgroundColor: "#ccc"
+    backgroundColor: "#ccc",
   },
   text: {
     color: "#fff",

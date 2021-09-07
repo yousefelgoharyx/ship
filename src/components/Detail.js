@@ -4,7 +4,6 @@ import Spacer from "./Spacer";
 import StyledText from "./StyledText";
 
 const Detail = (props) => {
-console.log(props)
   return (
     <View style={styles.container}>
       <StyledText style={styles.head}>{props.head}</StyledText>

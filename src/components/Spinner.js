@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { View, Animated } from "react-native";
 
-const Spinner = () => {
+const Spinner = ({color = "#ffffff", size = 24}) => {
   const spinningAnimation = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.loop(
@@ -17,26 +17,26 @@ const Spinner = () => {
     <View>
       <View
         style={{
-          width: 24,
-          height: 24,
+          width: size,
+          height: size,
           borderLeftColor: "#00000000",
           borderTopColor: "#00000000",
           borderBottomColor: "#00000000",
           borderRightColor: "#00000000",
           borderWidth: 3,
-          borderRadius: 24 / 2,
+          borderRadius: size / 2,
         }}
       ></View>
       <Animated.View
         style={{
-          width: 24,
-          height: 24,
-          borderLeftColor: "#ffffff",
-          borderTopColor: "#ffffff",
-          borderBottomColor: "#ffffff",
+          width: size,
+          height: size,
+          borderLeftColor: color,
+          borderTopColor: color,
+          borderBottomColor: color,
           borderRightColor: "#ffffff00",
           borderWidth: 3,
-          borderRadius: 24 / 2,
+          borderRadius: size / 2,
           position: "absolute",
           top: 0,
           left: 0,

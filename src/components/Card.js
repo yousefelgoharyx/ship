@@ -4,28 +4,25 @@ import StyledText from "./StyledText";
 import { MaterialIcons } from "@expo/vector-icons";
 import Spacer from "./Spacer";
 
-const Card = ({...rest}) => {
+const Card = ({ name, city, address, ...rest }) => {
   return (
     <TouchableOpacity activeOpacity={0.7} style={styles.container} {...rest}>
       <View style={styles.info}>
         <StyledText style={styles.infoName} weight="bold">
-          يوسف مجدي
+          {name}
         </StyledText>
         <Spacer space={4} />
         <View style={styles.infoPortion}>
-          <StyledText style={styles.infoText}>الاسكندرية</StyledText>
+          <StyledText style={styles.infoText}>{city}</StyledText>
           <MaterialIcons name="place" color="#999" style={{ top: 6 }} />
         </View>
         <Spacer space={4} />
 
         <View style={styles.infoPortion}>
-          <StyledText style={styles.infoText}>
-            نادي الصيد محرم بيك شارع الاخلاص عمارة ابو رضا الدور الاول
-          </StyledText>
+          <StyledText style={styles.infoText}>{address}</StyledText>
           <MaterialIcons name="place" color="#999" style={{ top: 6 }} />
         </View>
       </View>
-
     </TouchableOpacity>
   );
 };
@@ -37,7 +34,7 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     borderWidth: 1,
     padding: 16,
-    borderRadius: 16,
+    borderRadius: 12,
     overflow: "hidden",
   },
   info: {

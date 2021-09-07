@@ -3,15 +3,17 @@ import { useAuth } from "./src/context/auth";
 import Login from "./src/stacks/Login";
 import Main from "./src/stacks/Main";
 import { createStackNavigator } from "@react-navigation/stack";
+import AppLoading from "expo-app-loading";
 const Stack = createStackNavigator();
 const AppInsider = () => {
-  const { user } = useAuth();
+  const { auth } = useAuth();
+  if (auth.loading) return <AppLoading />;
   return (
     <Stack.Navigator screenOptions={{ headerMode: "none" }}>
-      {user.isLogged ? (
+      {auth.token ? (
         <Stack.Screen component={Main} name="Main" />
       ) : (
-        <Stack.Screen component={Login} name="Login" />
+        <Stack.Screen name="Login" component={Login} />
       )}
     </Stack.Navigator>
   );

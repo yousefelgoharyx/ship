@@ -1,42 +1,79 @@
-import React, { useContext, useState, createContext } from "react";
+import React, { useContext, useState, createContext, useEffect } from "react";
 import axios from "../util/axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const AuthContext = createContext();
-const b64 =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==";
 const AuthProvider = (props) => {
-  const [user, setUser] = useState({
-    isLogged: false,
+  const [auth, setAuth] = useState({
     token: null,
-    image: null,
-    username: null,
-    email: null,
+    user: null,
+    error: false,
+    loading: true,
   });
-
-  const login = async (username, password) => {
-    const { data } = await axios.post("login.php", {
-      email: "test@test.com",
-      password: 123,
-    });
-    setUser({
-      isLogged: true,
-      token: data[0].token,
-      image: data[0].pic,
-      username: data[0].name,
-      email: data[0].email,
-    });
-  };
-
-  const logout = () => {
-    setUser({
-      isLogged: false,
+  const resetError = () => {
+    setAuth({
       token: null,
-      image: null,
-      username: null,
-      email: null,
+      user: null,
+      error: false,
+      loading: false,
     });
   };
+  const login = (email, password) => {
+    return axios
+      .post("login.php", { email, password })
+      .then(async (res) => {
+        await AsyncStorage.setItem("token", res.data.token);
+        await AsyncStorage.setItem("user", JSON.stringify(res.data));
+        setAuth({
+          token: res.data.token,
+          user: res.data,
+          error: false,
+          loading: false,
+        });
+      })
+      .catch(() => {
+        setAuth({
+          token: null,
+          user: null,
+          error: true,
+          loading: false,
+        });
+      })
+  };
+
+  const logout = async () => {
+    await AsyncStorage.removeItem("token");
+    await AsyncStorage.removeItem("user");
+    setAuth({
+      user: null,
+      error: false,
+      token: null,
+      loading: false,
+    });
+  };
+  useEffect(() => {
+    (async () => {
+      try {
+        const token = await AsyncStorage.getItem("token");
+        const jsonUser = await AsyncStorage.getItem("user");
+        const user = jsonUser != null ? JSON.parse(jsonUser) : null;
+        setAuth({
+          loading: false,
+          token,
+          user,
+          error: false,
+        });
+      } catch {
+        setAuth({
+          loading: false,
+          token: null,
+          user: null,
+          error: true,
+        });
+      }
+    })();
+  }, []);
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ auth, login, logout, resetError }}>
       {props.children}
     </AuthContext.Provider>
   );
