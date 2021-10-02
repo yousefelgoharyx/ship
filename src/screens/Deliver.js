@@ -34,7 +34,8 @@ const Deliver = ({ navigation }) => {
     <Page>
       <Navbar onOpenDrawer={() => navigation.openDrawer()} title="تسليم شحنة" />
 
-      <PageWrapper>
+      <PageWrapper hasPadding>
+
         <Input placeholder="رقم الشحنة" />
         <Spacer />
         {barcodeImg}

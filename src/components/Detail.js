@@ -6,10 +6,10 @@ import StyledText from "./StyledText";
 const Detail = (props) => {
   return (
     <View style={styles.container}>
-      <StyledText style={styles.head}>{props.head}</StyledText>
+      <StyledText style={styles.head}>{props.head ?? "غير متاح"}</StyledText>
       <Spacer space={2} />
       <StyledText style={styles.subhead} weight={700}>
-        {props.subhead}
+        {props.subhead ?? "غير متاح"}
       </StyledText>
     </View>
   );

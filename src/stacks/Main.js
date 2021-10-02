@@ -10,8 +10,8 @@ import {
 import StyledText from "../components/StyledText";
 import Spacer from "../components/Spacer";
 import { MaterialIcons } from "@expo/vector-icons";
-import AllOrders from "../screens/AllOrders/AllOrders";
-import MyOrders from "../screens/MyOrders/MyOrders";
+import AllOrdersStack from "../screens/AllOrders/AllOrdersStack";
+import MyOrdersStack from "../screens/MyOrders/MyOrdersStack";
 import Deliver from "../screens/Deliver";
 import Wallet from "../screens/Wallet";
 import Returns from "../screens/Returns";
@@ -28,13 +28,13 @@ const links = [
     route: "AllOrdersStack",
     icon: "local-shipping",
     name: "جميع الطلبات",
-    component: AllOrders,
+    component: AllOrdersStack,
   },
   {
     route: "MyOrdersStack",
     icon: "source",
     name: "طلباتي",
-    component: MyOrders,
+    component: MyOrdersStack,
   },
   {
     route: "Stores",
@@ -42,12 +42,12 @@ const links = [
     name: "متاجرنا",
     component: Stores,
   },
-  {
-    route: "Private",
-    icon: "policy",
-    name: "الطبات الخاصة",
-    component: MyOrders,
-  },
+  // {
+  //   route: "Private",
+  //   icon: "policy",
+  //   name: "الطبات الخاصة",
+  //   component: MyOrders,
+  // },
   {
     route: "Deliver",
     icon: "send",
@@ -114,7 +114,7 @@ function DrawerSider({ state, navigation }) {
         <Profile
           image={"data:image/png;base64," + auth?.user?.pic}
           name={auth?.user?.name}
-          email={auth?.user?.email }
+          email={auth?.user?.email}
         />
       ) : null}
 

@@ -13,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = React.useState("");
   const handleLogin = async () => {
     setLoading(true);
-    await login(email, password)
+    await login()
     setLoading(false)
   };
   return (

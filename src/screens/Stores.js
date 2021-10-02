@@ -43,7 +43,7 @@ const Stores = ({ navigation }) => {
   return (
     <Page>
       <Navbar onOpenDrawer={() => navigation.openDrawer()} title="الاشعارات" />
-      <PageWrapper>
+      <PageWrapper hasPadding>
         <Store />
       </PageWrapper>
     </Page>

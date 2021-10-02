@@ -12,7 +12,7 @@ const Ticket = ({ navigation }) => {
         onOpenDrawer={() => navigation.openDrawer()}
         title="تذاكر الدعم"
       />
-      <PageWrapper>
+      <PageWrapper hasPadding>
         <Input placeholder="عنوان التذكرة" />
         <Spacer space={8} />
         <TextInput

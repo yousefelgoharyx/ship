@@ -1,6 +1,6 @@
 import React, { useContext, useState, createContext, useEffect } from "react";
-import axios from "../util/axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import fetchUser from "../api/fetchUser";
 const AuthContext = createContext();
 const AuthProvider = (props) => {
   const [auth, setAuth] = useState({
@@ -17,27 +17,25 @@ const AuthProvider = (props) => {
       loading: false,
     });
   };
-  const login = (email, password) => {
-    return axios
-      .post("login.php", { email, password })
-      .then(async (res) => {
-        await AsyncStorage.setItem("token", res.data.token);
-        await AsyncStorage.setItem("user", JSON.stringify(res.data));
-        setAuth({
-          token: res.data.token,
-          user: res.data,
-          error: false,
-          loading: false,
-        });
-      })
-      .catch(() => {
-        setAuth({
-          token: null,
-          user: null,
-          error: true,
-          loading: false,
-        });
-      })
+  const login = async () => {
+    try {
+      const user = await fetchUser();
+      await AsyncStorage.setItem("token", user.token);
+      await AsyncStorage.setItem("user", JSON.stringify(user));
+      setAuth({
+        token: user.token,
+        user: user,
+        error: false,
+        loading: false,
+      });
+    } catch {
+      setAuth({
+        token: null,
+        user: null,
+        error: true,
+        loading: false,
+      });
+    }
   };
 
   const logout = async () => {

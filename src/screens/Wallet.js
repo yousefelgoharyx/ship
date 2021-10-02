@@ -4,29 +4,46 @@ import Button from "../components/Button";
 import Navbar from "../components/Navbar";
 import Spacer from "../components/Spacer";
 import StyledText from "../components/StyledText";
-import Card from "../components/Card";
 import { Page, PageWrapper } from "../components/Page";
+import PageDataControl from "../components/PageDataControl";
+import Error from "../components/Error";
+import fetchWallet from "../api/fetchWallet";
+import useFetch from "../hooks/useFetch";
 const Deliver = ({ navigation }) => {
+  const handler = useFetch(fetchWallet);
+  let content = null;
+  if (handler.error) {
+    content = <Error retry={handler.refresh} />;
+  }
+
+  if (!handler.loading && !handler.error) {
+    content = (
+      <View style={styles.wallet}>
+        <View style={styles.walletWrapper}>
+          <StyledText style={styles.head} weight="bold">
+            تم تحصيل مبلغ
+          </StyledText>
+          <Spacer space={2} />
+          <StyledText style={styles.subhead}>
+            {handler.data.funds} جنيه
+          </StyledText>
+        </View>
+        <Button small style={styles.walletButton}>
+          سحب
+        </Button>
+      </View>
+    );
+  }
   return (
     <Page>
       <Navbar onOpenDrawer={() => navigation.openDrawer()} title="محفظتي" />
       <PageWrapper>
-        <View style={styles.wallet}>
-          <View>
-            <StyledText style={styles.head} weight="bold">
-              تم تحصيل مبلغ
-            </StyledText>
-            <Spacer space={2} />
-            <StyledText style={styles.subhead}>5000 جنيه</StyledText>
-          </View>
-          <Button small style={styles.walletButton}>سحب</Button>
-        </View>
-        <Spacer />
-        <StyledText style={styles.latestHead} weight="bold">
-          اخر الطلبات
-        </StyledText>
-        <Spacer />
-        <Card />
+        <PageDataControl
+          refreshing={handler.loading}
+          onRefresh={handler.refresh}
+        >
+          {content}
+        </PageDataControl>
       </PageWrapper>
     </Page>
   );
@@ -42,6 +59,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 8,
     elevation: 1,
+  },
+  walletWrapper: {
+    flexGrow: 0,
+    flexShrink: 1,
   },
   walletButton: {
     flexShrink: 0,

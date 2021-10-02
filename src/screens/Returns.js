@@ -13,7 +13,7 @@ const Returns = ({ navigation }) => {
         onSearch={(t) => t}
         title="مرتجعة"
       />
-      <PageWrapper>
+      <PageWrapper hasPadding>
         <StyledText style={styles.latestHead} weight="bold">
           اخر الطلبات
         </StyledText>

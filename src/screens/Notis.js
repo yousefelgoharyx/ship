@@ -25,8 +25,8 @@ const Notis = ({ navigation }) => {
   return (
     <Page>
       <Navbar onOpenDrawer={() => navigation.openDrawer()} title="الاشعارات" />
-      <PageWrapper>
-        <Noti head="ادارة الشركة" content="كسم اللي يشغلك بفلوس والله" />
+      <PageWrapper hasPadding>
+        <Noti head="ادارة الشركة" content="اشعار تجريبي" />
       </PageWrapper>
     </Page>
   );

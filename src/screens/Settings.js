@@ -27,21 +27,15 @@ const ProfilePicChanger = (props) => {
   );
 };
 const Settings = ({ navigation }) => {
-  useImagePicker();
-  const profileImage = useTakePicture();
-
+  const profileImage = useImagePicker();
+  const image = profileImage?.image
+    ? profileImage?.image
+    : "http://thebodyisnotanapology.com/wp-content/uploads/2018/02/pexels-photo-459947.jpg";
   return (
     <Page>
       <Navbar onOpenDrawer={() => navigation.openDrawer()} title="الاعدادات" />
-      <PageWrapper>
-        <ProfilePicChanger
-          image={
-            profileImage.image
-              ? profileImage.image
-              : "http://thebodyisnotanapology.com/wp-content/uploads/2018/02/pexels-photo-459947.jpg"
-          }
-          onPress={profileImage.launchCamera}
-        />
+      <PageWrapper hasPadding>
+        <ProfilePicChanger image={image} onPress={profileImage?.launchCamera} />
         <Spacer />
         <Input placeholder="الاسم" />
         <Spacer />

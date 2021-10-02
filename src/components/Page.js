@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 const Page = (props) => {
     return (
@@ -11,10 +11,13 @@ const Page = (props) => {
 
 
 const PageWrapper = (props) => {
+    const propStyles = {
+        padding: props.hasPadding ? 16 : 0
+    }
     return (
-        <ScrollView contentContainerStyle={styles.wrapper}>
+        <View style={[styles.wrapper, propStyles]}>
             {props.children}
-        </ScrollView>
+        </View>
     )
 }
 
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#f5f5f5"
     },
     wrapper: {
-        padding: 16
+        flex: 1,
     }
 })
 

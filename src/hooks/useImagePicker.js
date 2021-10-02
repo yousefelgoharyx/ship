@@ -1,19 +1,28 @@
-import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
-import { useEffect } from "react";
+import * as ImagePicker from "expo-image-picker";
+
+const cameraSettings = {
+  mediaTypes: ImagePicker.MediaTypeOptions.All,
+  allowsEditing: true,
+  aspect: [1, 1],
+  quality: 1,
+};
 const useImagePicker = () => {
-  useEffect(() => {
-    async function req() {
-      let status;
-      let canAskAgain;
-      while (status !== "granted" && canAskAgain) {
-        const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        status = result.status;
-        canAskAgain = result.canAskAgain;
-      }
+  const [image, setimage] = useState(null);
+  const launchCamera = async () => {
+    const s = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (s.granted) {
+      let result = await ImagePicker.launchImageLibraryAsync(cameraSettings);
+      if (!result.cancelled) setimage(result.uri);
+    } else {
+      alert("Allow the application to access the media");
     }
-    req();
-  }, []);
+  };
+
+  return {
+    launchCamera,
+    image,
+  };
 };
 
 export default useImagePicker;

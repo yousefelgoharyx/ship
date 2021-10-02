@@ -9,17 +9,17 @@ const Card = ({ name, city, address, ...rest }) => {
     <TouchableOpacity activeOpacity={0.7} style={styles.container} {...rest}>
       <View style={styles.info}>
         <StyledText style={styles.infoName} weight="bold">
-          {name}
+          {name || "غير متاح"}
         </StyledText>
         <Spacer space={4} />
         <View style={styles.infoPortion}>
-          <StyledText style={styles.infoText}>{city}</StyledText>
+          <StyledText style={styles.infoText}>{city || "غير متاح"}</StyledText>
           <MaterialIcons name="place" color="#999" style={{ top: 6 }} />
         </View>
         <Spacer space={4} />
 
         <View style={styles.infoPortion}>
-          <StyledText style={styles.infoText}>{address}</StyledText>
+          <StyledText style={styles.infoText}>{address || "غير متاح"}</StyledText>
           <MaterialIcons name="place" color="#999" style={{ top: 6 }} />
         </View>
       </View>
